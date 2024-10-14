@@ -4,8 +4,8 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Roleta",
-  description: "Gerador de roleta",
+  title: "Randomizador",
+  description: "Escolha uma resposta aleatória dentre as que você anota",
 };
 
 export default function RootLayout({
