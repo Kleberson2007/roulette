@@ -34,6 +34,9 @@ export default function Randomizador() {
             placeholder="digite as possiveis escolhas"
             
           />
+          <button>
+            adicionar
+          </button>
         </div>
         <div id="possibilidades">
           
