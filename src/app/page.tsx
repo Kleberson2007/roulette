@@ -1,21 +1,26 @@
-'use client'
+'use client';
 import { useState } from "react";
 import "./globals.css";
 
 export default function Randomizador() {
-  const possibilidades = [
-    ''
-  ];
-
+  const [possibilidades, setPossibilidades] = useState([]);
+  const [novaPossibilidade, setNovaPossibilidade] = useState('');
   const [escolhida, setEscolhida] = useState('');
 
   const respostaAleatoria = () => {
-    const possibilidadesIndex = Math.floor(Math.random() * possibilidades.length);
-    setEscolhida(possibilidades[possibilidadesIndex]);
+    if (possibilidades.length > 0) {
+      const possibilidadesIndex = Math.floor(Math.random() * possibilidades.length);
+      setEscolhida(possibilidades[possibilidadesIndex]);
+    }
   };
-  
-  
-  
+
+  const adicionarPossibilidade = () => {
+    if (novaPossibilidade.trim() !== '') {
+      setPossibilidades([...possibilidades, novaPossibilidade]);
+      setNovaPossibilidade('');
+    }
+  };
+
   return (
     <div id="page">
       <div id="titulo">
@@ -31,15 +36,20 @@ export default function Randomizador() {
         <div id="adicionando-possibilidades">
           <input 
             type="text"
-            placeholder="digite as possiveis escolhas"
-            
+            placeholder="digite as possíveis escolhas"
+            value={novaPossibilidade}
+            onChange={(e) => setNovaPossibilidade(e.target.value)}
           />
-          <button>
-            adicionar
+          <button onClick={adicionarPossibilidade}>
+            Adicionar
           </button>
         </div>
         <div id="possibilidades">
-          
+          <ul>
+            {possibilidades.map((possibilidade, index) => (
+              <li key={index}>{possibilidade}</li>
+            ))}
+          </ul>
         </div>
         <div id="historico">
           
